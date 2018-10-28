@@ -1,3 +1,9 @@
+#### 1.1.1 (2018-10-28)
+
+##### Chores
+
+*  Update Readme ([7cc39a04](https://github.com/AvraamMavridis/react-context-communication-hook/commit/7cc39a04c5eaaf7fd39c2cd4b037d78c50143a13))
+
 ### 1.1.0 (2018-10-28)
 
 ##### Chores
