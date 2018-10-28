@@ -33,4 +33,6 @@ function App() {
 }
 ```
 
+<img src="https://github.com/AvraamMavridis/react-window-communication-hook/blob/master/demo_gif.gif" />
+
 communicationState contains `lastMessage` and `messages` which is an array of the messages that where send from other tabs/windows to the current one.
