@@ -1,3 +1,16 @@
+#### 1.1.2 (2018-10-28)
+
+##### Chores
+
+*  Update Readme ([cf0e6a6d](https://github.com/AvraamMavridis/react-context-communication-hook/commit/cf0e6a6dbec2e622bc266369ada32e479852d41b))
+*  Update Readme ([2655c9a7](https://github.com/AvraamMavridis/react-context-communication-hook/commit/2655c9a7cf1e9b2fdafc5a400aa7842ac620541e))
+*  Update Readme ([126e9771](https://github.com/AvraamMavridis/react-context-communication-hook/commit/126e9771105f803f83bcf8ce3a4a23eb4950d6f3))
+*  Update readme with example ([c2a231ad](https://github.com/AvraamMavridis/react-context-communication-hook/commit/c2a231ad81fcd0f8dc0e2684f4a135ea8a976029))
+
+##### New Features
+
+*  Throw error if channel name is not specified ([cc6ed877](https://github.com/AvraamMavridis/react-context-communication-hook/commit/cc6ed877249e4f9890f640771ff6707ac2f3920e))
+
 #### 1.1.1 (2018-10-28)
 
 ##### Chores
