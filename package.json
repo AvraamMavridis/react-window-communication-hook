@@ -1,0 +1,26 @@
+{
+  "name": "react-window-communication-hook",
+  "version": "1.0.0",
+  "description": "Communicate between windows, tabs, iframes",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AvraamMavridis/react-context-communication-hook.git"
+  },
+  "keywords": [
+    "react",
+    "window",
+    "tab",
+    "communicate",
+    "hook"
+  ],
+  "author": "AvraamMavridis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AvraamMavridis/react-context-communication-hook/issues"
+  },
+  "homepage": "https://github.com/AvraamMavridis/react-context-communication-hook#readme"
+}
