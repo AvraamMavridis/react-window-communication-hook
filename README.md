@@ -19,7 +19,9 @@ pass a channel name
 const [communicationState, postMessage] = useBrowserContextCommunication("myGreatChannel");
 ```
 
-communicationState contains `lastMessage` and `messages` which is an array of the messages that where send from other tabs/windows to the current one.
+`communicationState` contains `lastMessage` and `messages` which is an array of the messages that where send from other tabs/windows to the current one.
+
+Use `postMessage` to send messages to the other browser contextes (windows, tabs, iframes)
 
 
 # Example
