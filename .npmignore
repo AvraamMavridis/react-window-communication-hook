@@ -1,0 +1,6 @@
+src/
+tests/
+.eslintrc
+jest.*
+styleguide.config.js
+travis.yml
