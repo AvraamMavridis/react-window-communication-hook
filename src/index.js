@@ -1,4 +1,4 @@
-const { useState, useEffect, useRef } = require("react");
+const { useState, useEffect, useRef } = require('react');
 
 const initialState = {
   lastMessage: undefined,
@@ -7,15 +7,20 @@ const initialState = {
 
 const supportsBroadcastAPI = (() => window && window.BroadcastChannel)();
 
-function useTabCommunication(channel_name) {
-  const [state, setMessages] = useState(initialState);
+function useBrowserContextCommunication(channelName) {
+  if (channelName === undefined) {
+    throw Error('You need to pass a channel name e.g. useBrowserContextCommunication("GreatChannel")');
+  }
+
+
+  const [ state, setMessages ] = useState(initialState);
   let channel;
 
   if (supportsBroadcastAPI) {
-    channel = useRef(new BroadcastChannel(channel_name));
+    channel = useRef(new BroadcastChannel(channelName));
   }
 
-  const postMessage = function(message) {
+  function postMessage(message) {
     if (message) {
       const msg = JSON.stringify({
         message,
@@ -25,24 +30,24 @@ function useTabCommunication(channel_name) {
       if (supportsBroadcastAPI && channel) {
         channel.current.postMessage(msg);
       } else {
-        window.localStorage.setItem(channel_name, msg);
+        window.localStorage.setItem(channelName, msg);
       }
     }
-  };
+  }
 
-  const updateState = function(data) {
-    setMessages(state => {
+  function updateState(data) {
+    setMessages(prevState => {
       return {
         lastMessage: data.message,
-        messages: state.messages.concat(data.message)
+        messages: prevState.messages.concat(data.message)
       };
     });
-  };
+  }
 
-  const updateFromLocalStorage = function(e) {
+  function updateFromLocalStorage(e) {
     const data = JSON.parse(e.newValue);
     updateState(data);
-  };
+  }
 
   useEffect(
     () => {
@@ -51,22 +56,22 @@ function useTabCommunication(channel_name) {
           channel.current.onmessage = e => updateState(JSON.parse(e.data));
         }
       } else {
-        window.addEventListener("storage", updateFromLocalStorage);
+        window.addEventListener('storage', updateFromLocalStorage);
       }
 
       return function cleanup() {
         if (channel.current) {
           channel.close();
         } else {
-          window.localStorage.removeItem(channel_name);
-          window.removeEventListener("storage", updateFromLocalStorage)
+          window.localStorage.removeItem(channelName);
+          window.removeEventListener('storage', updateFromLocalStorage);
         }
       };
     },
-    [channel_name]
+    [ channelName ]
   );
 
-  return [state, postMessage];
+  return [ state, postMessage ];
 }
 
-module.exports = useTabCommunication;
+module.exports = useBrowserContextCommunication;

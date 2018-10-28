@@ -9,10 +9,12 @@ Example use case: When the user presses logout in one tab, logout from every oth
 Example
 
 ```js
+import useBrowserContextCommunication from 'react-window-communication-hook';
+
 
 function App() {
   // state ({lastMessage,messages}) that comes from other browser context
-  const [communicationState, postMessage] = useTabCommunication("channel");
+  const [communicationState, postMessage] = useBrowserContextCommunication("channel");
   // Tabs, Windows etc are not listening to there own messages so
   // we need an extra local state
   const [status, setStatus] = useState("login");
