@@ -61,7 +61,8 @@ function useBrowserContextCommunication(channelName) {
 
       return function cleanup() {
         if (channel.current) {
-          channel.close();
+          channel.current.close();
+          channel.current = null;
         } else {
           window.localStorage.removeItem(channelName);
           window.removeEventListener('storage', updateFromLocalStorage);
