@@ -1,3 +1,13 @@
+#### 1.1.3 (2018-12-05)
+
+##### Chores
+
+*  Update lock ([c2d4190e](https://github.com/AvraamMavridis/react-context-communication-hook/commit/c2d4190eca9152e58e35da01b35ff14bea4da572))
+
+##### Bug Fixes
+
+*  cleanup of channel ([#1](https://github.com/AvraamMavridis/react-context-communication-hook/pull/1)) ([7cf4fa62](https://github.com/AvraamMavridis/react-context-communication-hook/commit/7cf4fa62e48674dfc7f0528a75984e262ef78d60))
+
 #### 1.1.2 (2018-10-28)
 
 ##### Chores
