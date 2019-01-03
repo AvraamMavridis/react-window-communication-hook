@@ -54,3 +54,8 @@ function App() {
 ```
 
 <img src="https://github.com/AvraamMavridis/react-window-communication-hook/blob/master/demo_gif.gif" />
+
+
+# License
+
+MIT
