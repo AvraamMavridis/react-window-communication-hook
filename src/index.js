@@ -2,7 +2,7 @@ const { useState, useEffect, useRef } = require('react');
 
 const initialState = {
   lastMessage: undefined,
-  messages: []
+  messages: [],
 };
 
 const supportsBroadcastAPI = (() => window && window.BroadcastChannel)();
@@ -11,7 +11,6 @@ function useBrowserContextCommunication(channelName) {
   if (channelName === undefined) {
     throw Error('You need to pass a channel name e.g. useBrowserContextCommunication("GreatChannel")');
   }
-
 
   const [ state, setMessages ] = useState(initialState);
   let channel;
@@ -24,10 +23,10 @@ function useBrowserContextCommunication(channelName) {
     if (message) {
       const msg = JSON.stringify({
         message,
-        time: Date.now()
+        time: Date.now(),
       });
 
-      if (supportsBroadcastAPI && channel) {
+      if (supportsBroadcastAPI && channel && channel.current) {
         channel.current.postMessage(msg);
       } else {
         window.localStorage.setItem(channelName, msg);
@@ -39,7 +38,7 @@ function useBrowserContextCommunication(channelName) {
     setMessages(prevState => {
       return {
         lastMessage: data.message,
-        messages: prevState.messages.concat(data.message)
+        messages: prevState.messages.concat(data.message),
       };
     });
   }
@@ -49,28 +48,25 @@ function useBrowserContextCommunication(channelName) {
     updateState(data);
   }
 
-  useEffect(
-    () => {
-      if (supportsBroadcastAPI) {
-        if (channel && channel.current) {
-          channel.current.onmessage = e => updateState(JSON.parse(e.data));
-        }
-      } else {
-        window.addEventListener('storage', updateFromLocalStorage);
+  useEffect(() => {
+    if (supportsBroadcastAPI) {
+      if (channel && channel.current) {
+        channel.current.onmessage = e => updateState(JSON.parse(e.data));
       }
+    } else {
+      window.addEventListener('storage', updateFromLocalStorage);
+    }
 
-      return function cleanup() {
-        if (channel.current) {
-          channel.current.close();
-          channel.current = null;
-        } else {
-          window.localStorage.removeItem(channelName);
-          window.removeEventListener('storage', updateFromLocalStorage);
-        }
-      };
-    },
-    [ channelName ]
-  );
+    return function cleanup() {
+      if (channel.current) {
+        channel.current.close();
+        channel.current = null;
+      } else {
+        window.localStorage.removeItem(channelName);
+        window.removeEventListener('storage', updateFromLocalStorage);
+      }
+    };
+  }, [ channelName ]);
 
   return [ state, postMessage ];
 }
