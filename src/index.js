@@ -58,7 +58,7 @@ function useBrowserContextCommunication(channelName) {
     }
 
     return function cleanup() {
-      if (channel.current) {
+      if (channel && channel.current) {
         channel.current.close();
         channel.current = null;
       } else {
