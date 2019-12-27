@@ -44,12 +44,18 @@ function useBrowserContextCommunication(channelName) {
   }
 
   function updateFromLocalStorage(e) {
-    const data = JSON.parse(e.newValue);
-    updateState(data);
+    try {
+      const data = JSON.parse(e.newValue);
+      if (data !== null && data !== undefined) {
+        updateState(data);
+      }
+    } catch (error) {
+      console.info('React Window Communication: Failed to parse json from localstorage');
+    }
   }
 
   useEffect(() => {
-    if (supportsBroadcastAPI) {
+    if (supportsBroadcastAPI && channel && channel.current) {
       if (channel && channel.current) {
         channel.current.onmessage = e => updateState(JSON.parse(e.data));
       }
