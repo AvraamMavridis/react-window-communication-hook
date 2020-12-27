@@ -5,7 +5,8 @@ const initialState = {
   messages: [],
 };
 
-const supportsBroadcastAPI = (() => window && window.BroadcastChannel)();
+const supportsBroadcastAPI =
+  typeof window !== "undefined" && "BroadcastChannel" in window;
 
 function useBrowserContextCommunication(channelName) {
   if (channelName === undefined) {
