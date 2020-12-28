@@ -5,8 +5,7 @@ const initialState = {
   messages: [],
 };
 
-const supportsBroadcastAPI =
-  typeof window !== "undefined" && "BroadcastChannel" in window;
+const supportsBroadcastAPI = typeof window !== 'undefined' && 'BroadcastChannel' in window;
 
 function useBrowserContextCommunication(channelName) {
   if (channelName === undefined) {
@@ -14,10 +13,10 @@ function useBrowserContextCommunication(channelName) {
   }
 
   const [ state, setMessages ] = useState(initialState);
-  let channel;
+  const channel = useRef();
 
   if (supportsBroadcastAPI) {
-    channel = useRef(new BroadcastChannel(channelName));
+    channel.current = new BroadcastChannel(channelName);
   }
 
   function postMessage(message) {
