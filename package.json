@@ -1,6 +1,6 @@
 {
   "name": "react-window-communication-hook",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "Communicate between windows, tabs, iframes",
   "main": "./lib/index.js",
   "scripts": {
